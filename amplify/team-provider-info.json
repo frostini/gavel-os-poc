@@ -1,0 +1,20 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-gavelosnextpoc-dev-181611-authRole",
+      "UnauthRoleArn": "arn:aws:iam::354998640530:role/amplify-gavelosnextpoc-dev-181611-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::354998640530:role/amplify-gavelosnextpoc-dev-181611-authRole",
+      "Region": "us-west-1",
+      "DeploymentBucketName": "amplify-gavelosnextpoc-dev-181611-deployment",
+      "UnauthRoleName": "amplify-gavelosnextpoc-dev-181611-unauthRole",
+      "StackName": "amplify-gavelosnextpoc-dev-181611",
+      "StackId": "arn:aws:cloudformation:us-west-1:354998640530:stack/amplify-gavelosnextpoc-dev-181611/f319df50-25ff-11ec-9b7a-06b5fab125f1",
+      "AmplifyAppId": "d28fjxzg98ng4f"
+    },
+    "categories": {
+      "auth": {
+        "gavelosnextpocca6a003e": {}
+      }
+    }
+  }
+}
