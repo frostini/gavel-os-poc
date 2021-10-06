@@ -1,14 +1,123 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createPark = /* GraphQL */ `
-  mutation CreatePark(
-    $input: CreateParkInput!
-    $condition: ModelParkConditionInput
+export const createAuction = /* GraphQL */ `
+  mutation CreateAuction(
+    $input: CreateAuctionInput!
+    $condition: ModelAuctionConditionInput
   ) {
-    createPark(input: $input, condition: $condition) {
+    createAuction(input: $input, condition: $condition) {
       id
       name
+      mechanism
+      startDateTime
+      description
+      image {
+        bucket
+        region
+        key
+      }
+      deliveryTerms
+      auctionables {
+        items {
+          id
+          content
+          description
+          auctionID
+          quantity
+          unit
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateAuction = /* GraphQL */ `
+  mutation UpdateAuction(
+    $input: UpdateAuctionInput!
+    $condition: ModelAuctionConditionInput
+  ) {
+    updateAuction(input: $input, condition: $condition) {
+      id
+      name
+      mechanism
+      startDateTime
+      description
+      image {
+        bucket
+        region
+        key
+      }
+      deliveryTerms
+      auctionables {
+        items {
+          id
+          content
+          description
+          auctionID
+          quantity
+          unit
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteAuction = /* GraphQL */ `
+  mutation DeleteAuction(
+    $input: DeleteAuctionInput!
+    $condition: ModelAuctionConditionInput
+  ) {
+    deleteAuction(input: $input, condition: $condition) {
+      id
+      name
+      mechanism
+      startDateTime
+      description
+      image {
+        bucket
+        region
+        key
+      }
+      deliveryTerms
+      auctionables {
+        items {
+          id
+          content
+          description
+          auctionID
+          quantity
+          unit
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createAuctionable = /* GraphQL */ `
+  mutation CreateAuctionable(
+    $input: CreateAuctionableInput!
+    $condition: ModelAuctionableConditionInput
+  ) {
+    createAuctionable(input: $input, condition: $condition) {
+      id
+      content
+      description
+      auctionID
+      quantity
+      unit
       image {
         bucket
         region
@@ -19,14 +128,18 @@ export const createPark = /* GraphQL */ `
     }
   }
 `;
-export const updatePark = /* GraphQL */ `
-  mutation UpdatePark(
-    $input: UpdateParkInput!
-    $condition: ModelParkConditionInput
+export const updateAuctionable = /* GraphQL */ `
+  mutation UpdateAuctionable(
+    $input: UpdateAuctionableInput!
+    $condition: ModelAuctionableConditionInput
   ) {
-    updatePark(input: $input, condition: $condition) {
+    updateAuctionable(input: $input, condition: $condition) {
       id
-      name
+      content
+      description
+      auctionID
+      quantity
+      unit
       image {
         bucket
         region
@@ -37,14 +150,18 @@ export const updatePark = /* GraphQL */ `
     }
   }
 `;
-export const deletePark = /* GraphQL */ `
-  mutation DeletePark(
-    $input: DeleteParkInput!
-    $condition: ModelParkConditionInput
+export const deleteAuctionable = /* GraphQL */ `
+  mutation DeleteAuctionable(
+    $input: DeleteAuctionableInput!
+    $condition: ModelAuctionableConditionInput
   ) {
-    deletePark(input: $input, condition: $condition) {
+    deleteAuctionable(input: $input, condition: $condition) {
       id
-      name
+      content
+      description
+      auctionID
+      quantity
+      unit
       image {
         bucket
         region

@@ -3,8 +3,40 @@ type S3Object {
   region: String!
   key: String!
 }
-type Park @model {
+type Auction @model {
   id: ID!
-  name: String!
+  name: String
+  mechanism: AuctionType
+  startDateTime: AWSDate
+  description: String
   image: S3Object
+  deliveryTerms: String
+  auctionables: [Auctionable] @connection(keyName: "byAuctionable", fields: ["id"])
+}
+
+type Auctionable @model
+  @key(name: "byAuctionable", fields: ["auctionID", "content"]) {
+  id: ID!
+  content: String
+  description: String
+  auctionID: ID
+  quantity: Float
+  unit: UnitType
+  image: S3Object
+}
+
+enum AuctionType {
+  dutch
+  english
+  texas
+}
+enum UnitType {
+  item
+  pallet
+  container
+  pound
+  kilo
+  gram
+  ounce
+  ton
 }

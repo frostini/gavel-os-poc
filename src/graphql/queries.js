@@ -1,11 +1,76 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getPark = /* GraphQL */ `
-  query GetPark($id: ID!) {
-    getPark(id: $id) {
+export const getAuction = /* GraphQL */ `
+  query GetAuction($id: ID!) {
+    getAuction(id: $id) {
       id
       name
+      mechanism
+      startDateTime
+      description
+      image {
+        bucket
+        region
+        key
+      }
+      deliveryTerms
+      auctionables {
+        items {
+          id
+          content
+          description
+          auctionID
+          quantity
+          unit
+          createdAt
+          updatedAt
+        }
+        nextToken
+      }
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listAuctions = /* GraphQL */ `
+  query ListAuctions(
+    $filter: ModelAuctionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAuctions(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        name
+        mechanism
+        startDateTime
+        description
+        image {
+          bucket
+          region
+          key
+        }
+        deliveryTerms
+        auctionables {
+          nextToken
+        }
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+  }
+`;
+export const getAuctionable = /* GraphQL */ `
+  query GetAuctionable($id: ID!) {
+    getAuctionable(id: $id) {
+      id
+      content
+      description
+      auctionID
+      quantity
+      unit
       image {
         bucket
         region
@@ -16,16 +81,20 @@ export const getPark = /* GraphQL */ `
     }
   }
 `;
-export const listParks = /* GraphQL */ `
-  query ListParks(
-    $filter: ModelParkFilterInput
+export const listAuctionables = /* GraphQL */ `
+  query ListAuctionables(
+    $filter: ModelAuctionableFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listParks(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listAuctionables(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        name
+        content
+        description
+        auctionID
+        quantity
+        unit
         image {
           bucket
           region

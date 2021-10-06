@@ -1,0 +1,23 @@
+# MODELS TO ADD
+auctioneer
+auction
+item
+buyer
+buidder
+s3Object
+
+# Auction
+existing
+id
+name
+image
+
+Initial Auction Model
+----------
+mechanism String! 
+start_date date 
+start_time time 
+time_zone zone 
+details
+
+Detailed Auction Model
