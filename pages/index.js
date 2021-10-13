@@ -1,24 +1,11 @@
-/*
-  This example requires Tailwind CSS v2.0+ 
-  
-  This example requires some changes to your config:
-  
-  ```
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-  ```
-*/
+
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
 import { ChevronRightIcon } from '@heroicons/react/solid'
 import { CenterText } from '/components/features'
+import { PublicLayout } from '../components/layout'
+
 const navigation = [
   { name: 'Product', href: '#' },
   { name: 'Features', href: '#' },
@@ -26,7 +13,7 @@ const navigation = [
   { name: 'Company', href: '#' },
 ]
 
-export default function Example() {
+export default function Page() {
   return (
     <div className="relative bg-gray-800 overflow-hidden">
       <div className="hidden sm:block sm:absolute sm:inset-0" aria-hidden="true">
@@ -340,5 +327,13 @@ export default function Example() {
         </main>
       </div>
     </div>
+  )
+}
+
+Page.getLayout = function getLayout(page) {
+  return (
+    <PublicLayout>
+      {page}
+    </PublicLayout>
   )
 }
