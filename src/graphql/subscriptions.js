@@ -23,11 +23,18 @@ export const onCreateAuction = /* GraphQL */ `
           auctionID
           quantity
           unit
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -55,11 +62,18 @@ export const onUpdateAuction = /* GraphQL */ `
           auctionID
           quantity
           unit
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -87,11 +101,18 @@ export const onDeleteAuction = /* GraphQL */ `
           auctionID
           quantity
           unit
+          _version
+          _deleted
+          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
+        startedAt
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -111,6 +132,9 @@ export const onCreateAuctionable = /* GraphQL */ `
         region
         key
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -130,6 +154,9 @@ export const onUpdateAuctionable = /* GraphQL */ `
         region
         key
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
@@ -149,6 +176,9 @@ export const onDeleteAuctionable = /* GraphQL */ `
         region
         key
       }
+      _version
+      _deleted
+      _lastChangedAt
       createdAt
       updatedAt
     }
