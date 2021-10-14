@@ -4,6 +4,7 @@ import {
   CategoriesFeature,
   CenterTextFeature,
   Faq,
+  NewsletterFeature,
   SplitRightImageFeature,
   SplitLeftImageFeature,
 } from '../components/features'
@@ -21,6 +22,7 @@ export default function Page() {
       </div>
       <CategoriesFeature/>
       <Faq/>
+      <NewsletterFeature />
     </>
   )
 }
