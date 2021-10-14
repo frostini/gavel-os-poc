@@ -1,10 +1,11 @@
 import { PublicLayout } from '../components/layout'
 import { SplitWithFormHero } from '../components/hero'
 import { 
+  CategoriesFeature,
   CenterTextFeature,
+  Faq,
   SplitRightImageFeature,
   SplitLeftImageFeature,
-  Faq
 } from '../components/features'
 
 export default function Page() {
@@ -16,6 +17,7 @@ export default function Page() {
           <CenterTextFeature/>
           <SplitLeftImageFeature/>
           <SplitRightImageFeature/>
+          <CategoriesFeature/>
           <Faq/>
         </div>
       </div>
