@@ -17,10 +17,10 @@ export default function Page() {
           <CenterTextFeature/>
           <SplitLeftImageFeature/>
           <SplitRightImageFeature/>
-          <CategoriesFeature/>
-          <Faq/>
         </div>
       </div>
+      <CategoriesFeature/>
+      <Faq/>
     </>
   )
 }
