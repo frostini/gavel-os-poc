@@ -1,6 +1,7 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { MenuIcon, XIcon } from '@heroicons/react/outline'
+import Link from 'next/link'
 
 const navigation = [
   { name: 'Product', href: '#' },
@@ -41,12 +42,14 @@ const PublicNavbar = () => (
         </div>
       </div>
       <div className="hidden md:flex">
-        <a
-          href="#"
-          className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
-        >
-          Log in
-        </a>
+        <Link href="/sign-in">
+          <a
+            href="#"
+            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-gray-600 hover:bg-gray-700"
+          >
+            Sign in
+          </a>
+        </Link>
       </div>
     </nav>
 
