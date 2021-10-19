@@ -1,5 +1,5 @@
-import { PublicNavbar } from "../navbar"
-import { AppNavbar } from "../navbar"
+import { PublicNavbar } from "../navigation"
+import { AppNavbar } from "../navigation"
 import { PublicFooter } from "../../footer";
 
 const PublicLayout = ({ children }) => (
