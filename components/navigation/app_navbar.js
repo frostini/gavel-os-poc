@@ -1,12 +1,15 @@
 import { Fragment, useState } from 'react'
 import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
 import { MenuIcon, QuestionMarkCircleIcon, SearchIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline'
+import { ChevronDownIcon } from '@heroicons/react/solid'
+import DropdownMenuSelect from './dropdown_menu_select'
+import Image from 'next/image'
 
 const currencies = ['CAD', 'USD', 'AUD', 'EUR', 'GBP']
 const navigation = {
   categories: [
     {
-      name: 'Women',
+      name: 'About',
       featured: [
         {
           name: 'New Arrivals',
@@ -33,9 +36,8 @@ const navigation = {
           imageAlt: 'Model opening tan leather long wallet with credit card pockets and cash pouch.',
         },
       ],
-    },
-    {
-      name: 'Men',
+    }, {
+      name: 'Auctions',
       featured: [
         {
           name: 'New Arrivals',
@@ -64,12 +66,8 @@ const navigation = {
         },
       ],
     },
-  ],
-  pages: [
-    { name: 'Company', href: '#' },
-    { name: 'Stores', href: '#' },
-  ],
-}
+  ]}
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -158,21 +156,15 @@ export default function Example() {
                   ))}
                 </Tab.Panels>
               </Tab.Group>
-
-              <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                {navigation.pages.map((page) => (
-                  <div key={page.name} className="flow-root">
-                    <a href={page.href} className="-m-2 p-2 block font-medium text-gray-900">
-                      {page.name}
-                    </a>
-                  </div>
-                ))}
-              </div>
-
               <div className="border-t border-gray-200 py-6 px-4 space-y-6">
                 <div className="flow-root">
                   <a href="#" className="-m-2 p-2 block font-medium text-gray-900">
-                    Create an account
+                    Create an accounts
+                  </a>
+                </div>
+                <div className="flow-root">
+                  <a href="#" className="-m-2 p-2 block font-medium text-gray-900">
+                    Create an accounts
                   </a>
                 </div>
                 <div className="flow-root">
@@ -225,13 +217,14 @@ export default function Example() {
         </Dialog>
       </Transition.Root>
 
-      <header className="relative">
+
+      <header className="relative z-10">
         <nav aria-label="Top">
           {/* Top navigation */}
           <div className="bg-gray-900">
-            <div className="max-w-7xl mx-auto h-10 px-4 flex items-center justify-between sm:px-6 lg:px-8">
+            <div className="max-w-7xl mx-auto h-10 px-4 flex items-center justify-center sm:px-6 lg:px-8">
               {/* Currency selector */}
-              <form>
+              {/* <form>
                 <div>
                   <label htmlFor="desktop-currency" className="sr-only">
                     Currency
@@ -265,16 +258,17 @@ export default function Example() {
                     </div>
                   </div>
                 </div>
-              </form>
+              </form> */}
 
               <div className="flex items-center space-x-6">
-                <a href="#" className="text-sm font-medium text-white hover:text-gray-100">
-                  Sign in
+                <a href="#" className="underline text-sm font-medium text-white hover:text-gray-100">
+                  Click here to test drive demo mode
                 </a>
-                <a href="#" className="text-sm font-medium text-white hover:text-gray-100">
+                {/* <a href="#" className="text-sm font-medium text-white hover:text-gray-100">
                   Create an account
-                </a>
+                </a> */}
               </div>
+              
             </div>
           </div>
 
@@ -282,23 +276,35 @@ export default function Example() {
           <div className="bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="border-b border-gray-200">
+
                 <div className="h-16 flex items-center justify-between">
                   {/* Logo (lg+) */}
                   <div className="hidden lg:flex-1 lg:flex lg:items-center">
                     <a href="#">
                       <span className="sr-only">Workflow</span>
-                      <img
+                      
+                      <Image
+                              src="/gavel_os_logo.svg"
+                              alt="Picture of the author"
+                              width={150}
+                              height={70}
+                      />
+                      {/* <img
                         className="h-8 w-auto"
                         src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
                         alt=""
-                      />
+                      /> */}
                     </a>
                   </div>
 
                   <div className="hidden h-full lg:flex">
                     {/* Flyout menus */}
+                    
+                    
                     <Popover.Group className="px-4 bottom-0 inset-x-0">
+
                       <div className="h-full flex justify-center space-x-8">
+                        {/* <DropdownMenuSelect /> */}
                         {navigation.categories.map((category) => (
                           <Popover key={category.name} className="flex">
                             {({ open }) => (
@@ -313,6 +319,10 @@ export default function Example() {
                                     )}
                                   >
                                     {category.name}
+                                    <ChevronDownIcon
+                                      className={classNames(open ? 'text-gray-600' : 'text-gray-400', 'ml-2 h-5 w-5 group-hover:text-gray-500')}
+                                      aria-hidden="true"
+                                    />
                                   </Popover.Button>
                                 </div>
 
@@ -359,16 +369,6 @@ export default function Example() {
                             )}
                           </Popover>
                         ))}
-
-                        {navigation.pages.map((page) => (
-                          <a
-                            key={page.name}
-                            href={page.href}
-                            className="flex items-center text-sm font-medium text-gray-700 hover:text-gray-800"
-                          >
-                            {page.name}
-                          </a>
-                        ))}
                       </div>
                     </Popover.Group>
                   </div>
@@ -383,50 +383,35 @@ export default function Example() {
                       <span className="sr-only">Open menu</span>
                       <MenuIcon className="h-6 w-6" aria-hidden="true" />
                     </button>
-
-                    {/* Search */}
-                    <a href="#" className="ml-2 p-2 text-gray-400 hover:text-gray-500">
-                      <span className="sr-only">Search</span>
-                      <SearchIcon className="w-6 h-6" aria-hidden="true" />
+                    <a href="#" className="lg:hidden">
+                      <span className="sr-only">Workflow</span>
+                      <Image
+        src={"/gavel_os_logo.svg"}
+        alt="Picture of the author"
+        width={100}
+        height={50}
+        // blurDataURL="data:..." automatically provided
+        // placeholder="blur" // Optional blur-up while loading
+      />
+                      {/* <img
+                        src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
+                        alt=""
+                        className="h-8 w-auto"
+                      /> */}
                     </a>
+
                   </div>
-
-                  {/* Logo (lg-) */}
-                  <a href="#" className="lg:hidden">
-                    <span className="sr-only">Workflow</span>
-                    <img
-                      src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
-                      alt=""
-                      className="h-8 w-auto"
-                    />
-                  </a>
-
                   <div className="flex-1 flex items-center justify-end">
-                    <a href="#" className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
-                      Search
-                    </a>
-
-                    <div className="flex items-center lg:ml-8">
-                      {/* Help */}
-                      <a href="#" className="p-2 text-gray-400 hover:text-gray-500 lg:hidden">
-                        <span className="sr-only">Help</span>
-                        <QuestionMarkCircleIcon className="w-6 h-6" aria-hidden="true" />
+                    <div className="md:flex items-center justify-end md:flex-1 lg:w-0">
+                      <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+                        Sign in
                       </a>
-                      <a href="#" className="hidden text-sm font-medium text-gray-700 hover:text-gray-800 lg:block">
-                        Help
+                      <a
+                        href="#"
+                        className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                      >
+                        Sign up
                       </a>
-
-                      {/* Cart */}
-                      <div className="ml-4 flow-root lg:ml-8">
-                        <a href="#" className="group -m-2 p-2 flex items-center">
-                          <ShoppingBagIcon
-                            className="flex-shrink-0 h-6 w-6 text-gray-400 group-hover:text-gray-500"
-                            aria-hidden="true"
-                          />
-                          <span className="ml-2 text-sm font-medium text-gray-700 group-hover:text-gray-800">0</span>
-                          <span className="sr-only">items in cart, view bag</span>
-                        </a>
-                      </div>
                     </div>
                   </div>
                 </div>

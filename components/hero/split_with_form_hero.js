@@ -6,30 +6,27 @@ const SplitWithFormHero = () => (
       <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:px-8 lg:max-w-7xl lg:grid lg:grid-cols-2 lg:gap-24">
         <div>
           <div>
-            <img
+            {/* <img
               className="h-11 w-auto"
               src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
               alt="Workflow"
-            />
+            /> */}
           </div>
           <div className="mt-20">
             <div>
               <a href="#" className="inline-flex space-x-4">
-                <span className="rounded bg-indigo-50 px-2.5 py-1 text-xs font-semibold text-indigo-600 tracking-wide uppercase">
-                  What&apos;s new
-                </span>
-                <span className="inline-flex items-center text-sm font-medium text-indigo-600 space-x-1">
-                  <span>Just shipped version 0.1.0</span>
+                <span className="bg-indigo-50 inline-flex items-center text-sm font-medium text-indigo-600 space-x-1">
+                  <span>Test drive our demo</span>
                   <ChevronRightIcon className="h-5 w-5" aria-hidden="true" />
                 </span>
               </a>
             </div>
             <div className="mt-6 sm:max-w-xl">
               <h1 className="text-4xl font-extrabold text-gray-900 tracking-tight sm:text-5xl">
-                Server management for growing teams
+                the Auction as a Service Operating System
               </h1>
               <p className="mt-6 text-xl text-gray-500">
-                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.
+                Gavel<span className="font-bold">OS</span> allows you to create and run your own auctions online.
               </p>
             </div>
             <form action="#" className="mt-12 sm:max-w-lg sm:w-full sm:flex">
@@ -49,11 +46,11 @@ const SplitWithFormHero = () => (
                   type="submit"
                   className="block w-full rounded-md border border-transparent px-5 py-3 bg-indigo-600 text-base font-medium text-white shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:px-10"
                 >
-                  Notify me
+                  Sign Up
                 </button>
               </div>
             </form>
-            <div className="mt-6">
+            {/* <div className="mt-6">
               <div className="inline-flex items-center divide-x divide-gray-300">
                 <div className="flex-shrink-0 flex pr-5">
                   <StarIcon className="h-5 w-5 text-yellow-400" aria-hidden="true" />
@@ -67,7 +64,7 @@ const SplitWithFormHero = () => (
                   <span className="font-medium text-indigo-600">500 beta users</span>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
