@@ -1,9 +1,11 @@
-import { Fragment, useState } from 'react'
-import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
-import { MenuIcon, QuestionMarkCircleIcon, SearchIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline'
-import DropdownMenuSelect from './dropdown_menu_select'
-import Image from 'next/image'
-import navigationMap from './navigation_map'
+import { Fragment, useState } from 'react';
+import { Dialog, Popover, Tab, Transition } from '@headlessui/react';
+import Image from 'next/image';
+import Link from 'next/link';
+
+import { MenuIcon, QuestionMarkCircleIcon, SearchIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
+import DropdownMenuSelect from './dropdown_menu_select';
+import navigationMap from './navigation_map';
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
@@ -178,15 +180,18 @@ export default function Example() {
                   </div>
                   <div className="flex-2 md:flex-1 flex items-center justify-end">
                     <div className="md:flex items-center justify-end md:flex-1 lg:w-0">
-                      <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
-                        Sign in
-                      </a>
-                      <a
-                        href="#"
-                        className="ml-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                      >
-                        Sign up
-                      </a>
+                      <Link href="/sign-in">
+                        <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+                          Sign in
+                        </a>
+                      </Link>
+                      <Link href="/sign-up">
+                        <a
+                          className="ml-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                        >
+                          Sign up
+                        </a>
+                      </Link>
                     </div>
                     {/* Mobile menu */}
                   </div>
