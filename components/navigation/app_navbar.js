@@ -77,7 +77,7 @@ export default function Example() {
   const [open, setOpen] = useState(false)
 
   return (
-    <div className="bg-white">
+    <div className="bg-white sticky top-0 z-10">
       {/* Mobile menu */}
       <Transition.Root show={open} as={Fragment}>
         <Dialog as="div" className="fixed inset-0 flex z-40 lg:hidden" onClose={setOpen}>
@@ -159,23 +159,17 @@ export default function Example() {
               <div className="border-t border-gray-200 py-6 px-4 space-y-6">
                 <div className="flow-root">
                   <a href="#" className="-m-2 p-2 block font-medium text-gray-900">
-                    Create an accounts
-                  </a>
-                </div>
-                <div className="flow-root">
-                  <a href="#" className="-m-2 p-2 block font-medium text-gray-900">
-                    Create an accounts
-                  </a>
-                </div>
-                <div className="flow-root">
-                  <a href="#" className="-m-2 p-2 block font-medium text-gray-900">
                     Sign in
                   </a>
                 </div>
+                <div className="flow-root">
+                  <a href="#" className="-m-2 p-2 block font-medium text-gray-900">
+                    Create an accounts
+                  </a>
+                </div>
               </div>
-
-              <div className="border-t border-gray-200 py-6 px-4 space-y-6">
-                {/* Currency selector */}
+{/* Currency selector */}
+              {/* <div className="border-t border-gray-200 py-6 px-4 space-y-6">
                 <form>
                   <div className="inline-block">
                     <label htmlFor="mobile-currency" className="sr-only">
@@ -211,7 +205,7 @@ export default function Example() {
                     </div>
                   </div>
                 </form>
-              </div>
+              </div> */}
             </div>
           </Transition.Child>
         </Dialog>
@@ -386,29 +380,21 @@ export default function Example() {
                     <a href="#" className="lg:hidden">
                       <span className="sr-only">Workflow</span>
                       <Image
-        src={"/gavel_os_logo.svg"}
-        alt="Picture of the author"
-        width={100}
-        height={50}
-        // blurDataURL="data:..." automatically provided
-        // placeholder="blur" // Optional blur-up while loading
-      />
-                      {/* <img
-                        src="https://tailwindui.com/img/logos/workflow-mark.svg?color=indigo&shade=600"
-                        alt=""
-                        className="h-8 w-auto"
-                      /> */}
+                        src={"/gavel_os_logo_text_greyscale.svg"}
+                        alt="Picture of the author"
+                        width={80}
+                        height={50}
+                      />
                     </a>
-
                   </div>
-                  <div className="flex-1 flex items-center justify-end">
+                  <div className="flex-2 md:flex-1 flex items-center justify-end">
                     <div className="md:flex items-center justify-end md:flex-1 lg:w-0">
                       <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
                         Sign in
                       </a>
                       <a
                         href="#"
-                        className="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+                        className="ml-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
                       >
                         Sign up
                       </a>
