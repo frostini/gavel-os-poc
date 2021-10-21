@@ -3,26 +3,15 @@ import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon } from '@heroicons/react/solid'
 
-const solutions = [
-  { name: 'Blog', description: 'Learn about tips, product updates and company culture.', href: '#' },
-  {
-    name: 'Help Center',
-    description: 'Get all of your questions answered in our forums of contact support.',
-    href: '#',
-  },
-  { name: 'Guides', description: 'Learn how to maximize our platform to get the most out of it.', href: '#' },
-  { name: 'Events', description: 'Check out webinars with experts and learn about our annual conference.', href: '#' },
-  { name: 'Security', description: 'Understand how we take your privacy seriously.', href: '#' },
-]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function DropdownMenuSelect() {
+export default function DropdownMenuSelect({ data, title }) {
   return (
     
-    <Popover className="flex">
+    <Popover key={title} className="flex">
       {({ open }) => (
         <>
           <Popover.Button
@@ -33,7 +22,7 @@ export default function DropdownMenuSelect() {
             'relative z-10 flex items-center transition-colors ease-out duration-200 text-sm font-medium border-b-2 -mb-px pt-px'
             )}
           >
-            <span>About</span>
+            <span>{title || `About`}</span>
             <ChevronDownIcon
               className={classNames(open ? 'text-gray-600' : 'text-gray-400', 'ml-2 h-5 w-5 group-hover:text-gray-500')}
               aria-hidden="true"
@@ -52,7 +41,7 @@ export default function DropdownMenuSelect() {
             <Popover.Panel className="absolute top-full  text-sm text-gray-500 max-w-xs sm:px-0">
               <div className="rounded-lg shadow-lg ring-1 ring-black ring-opacity-5 overflow-hidden">
                 <div className="relative grid gap-6 bg-white px-5 py-6 sm:gap-8 sm:p-8">
-                  {solutions.map((item) => (
+                  {data.map((item) => (
                     <a
                       key={item.name}
                       href={item.href}
