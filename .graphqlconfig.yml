@@ -1,6 +1,6 @@
 projects:
   gavelosnextpoc:
-    schemaPath: src/graphql/schema.json
+    schemaPath: amplify/backend/api/gavelosnextpoc/build/schema.graphql
     includes:
       - src/graphql/**/*.js
     excludes:

@@ -5,23 +5,21 @@ import { ChevronDownIcon, FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } fr
 import { PublicLayout } from '../components/layout'
 
 const sortOptions = [
-  { name: 'Most Popular', href: '#', current: true },
-  { name: 'Best Rating', href: '#', current: false },
-  { name: 'Newest', href: '#', current: false },
-  { name: 'Price: Low to High', href: '#', current: false },
-  { name: 'Price: High to Low', href: '#', current: false },
+  { name: 'Category', href: '#', current: true },
+  { name: 'Auctioneer', href: '#', current: false },
+  { name: 'Auction Time Asc', href: '#', current: false },
+  { name: 'Auction Time Dec', href: '#', current: false },
 ]
 const subCategories = [
-  { name: 'Totes', href: '#' },
-  { name: 'Backpacks', href: '#' },
-  { name: 'Travel Bags', href: '#' },
-  { name: 'Hip Bags', href: '#' },
-  { name: 'Laptop Sleeves', href: '#' },
+  { name: 'All Auctions', href: '#' },
+  { name: 'Ending Soon', href: '#' },
+  { name: 'Upcoming Auctions', href: '#' },
+  { name: 'Auction Channels', href: '#' },
 ]
 const filters = [
   {
-    id: 'color',
-    name: 'Color',
+    id: 'payments',
+    name: 'by Payment Methods',
     options: [
       { value: 'white', label: 'White', checked: false },
       { value: 'beige', label: 'Beige', checked: false },
@@ -32,26 +30,32 @@ const filters = [
     ],
   },
   {
-    id: 'category',
-    name: 'Category',
+    id: 'categories',
+    name: 'by Categories',
     options: [
-      { value: 'new-arrivals', label: 'New Arrivals', checked: false },
-      { value: 'sale', label: 'Sale', checked: false },
-      { value: 'travel', label: 'Travel', checked: true },
-      { value: 'organization', label: 'Organization', checked: false },
-      { value: 'accessories', label: 'Accessories', checked: false },
+      { value: 'machinery', label: 'Machinery', checked: false },
+      { value: 'Real Estate', label: 'Real Estate', checked: false },
+      { value: 'Art', label: 'Art', checked: true },
+      { value: 'Collectable and Luxury Goods', label: 'Collectable and Luxury Goods', checked: false },
+      { value: 'NFTs', label: 'NFTs', checked: false },
     ],
   },
   {
-    id: 'size',
-    name: 'Size',
+    id: 'location',
+    name: 'by Location',
     options: [
-      { value: '2l', label: '2L', checked: false },
-      { value: '6l', label: '6L', checked: false },
-      { value: '12l', label: '12L', checked: false },
-      { value: '18l', label: '18L', checked: false },
-      { value: '20l', label: '20L', checked: false },
-      { value: '40l', label: '40L', checked: true },
+      { value: '1000', label: 'Under 1000', checked: false },
+      { value: '100000', label: 'Under 100000', checked: false },
+      { value: '1000000', label: 'Any Price', checked: false },
+    ],
+  },
+  {
+    id: 'anonymity',
+    name: 'by Anonymity',
+    options: [
+      { value: '1000', label: 'Under 1000', checked: false },
+      { value: '100000', label: 'Under 100000', checked: false },
+      { value: '1000000', label: 'Any Price', checked: false },
     ],
   },
 ]
@@ -166,13 +170,13 @@ export default function Example() {
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative z-10 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
-            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">New Arrivals</h1>
+            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">All Auctions</h1>
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
                 <div>
                   <Menu.Button className="group inline-flex justify-center text-sm font-medium text-gray-700 hover:text-gray-900">
-                    Sort
+                    Sort by
                     <ChevronDownIcon
                       className="flex-shrink-0 -mr-1 ml-1 h-5 w-5 text-gray-400 group-hover:text-gray-500"
                       aria-hidden="true"
