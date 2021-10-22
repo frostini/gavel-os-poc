@@ -10,17 +10,18 @@ import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react';
 export async function getServerSideProps (context) {
   const { Auth, API } = withSSRContext(context)
   const user = await Auth.currentAuthenticatedUser()
-  // const { data } = await API.graphql({ query: listAuctions })
+  const { data } = await API.graphql({ query: listAuctions })
+  console.log(user)
 
-  console.log('auctions: ', data)
   return {
     props: {
-      parks: "test"
+      user: user.username,
+      auctions: data.listAuctions.items
     }
   }
 }
 
-const MyApp = ({ parks }) => {
+const MyApp = ({ user, auctions }) => {
 
   return (
     <div>
@@ -29,16 +30,17 @@ const MyApp = ({ parks }) => {
       </Head>
       <div className='container'>
         <h1>Auctions <Link href='/create-auction'>(+)</Link></h1>
+        <h1>
+          { user ? user : null }
+        </h1>
         <div className='img-grid'>
-          {parks}
           {
-          // auctions.map(auction => (
-          //     <div key={auction.id} className='img-square'>
-          //       <h2>{auction.name}</h2>
-          //       <h2>{auction.id}</h2>
-          //       <AmplifyS3Image imgKey={auction.image.key} height='200px' />
-          //     </div>
-          // ))
+          auctions.map(auction => (
+            <div key={auction.id} className='img-square'>
+              <h2>{auction.name}</h2>
+              <h2>{auction.id}</h2>
+            </div>
+          ))
           }
         </div>
       </div>
