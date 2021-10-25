@@ -2,18 +2,21 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Auth } from 'aws-amplify';
 import { useRouter } from 'next/router';
-import { useForm } from "react-hook-form";
 import { useState } from "react"
-import { RegisterAuth, ConfirmAuth } from '../components/auth';
+import { 
+  ConfirmAuth,
+  RegisterAuth,
+  SignInAuth } from '../components/auth';
 
 const SignUp = () => {
-  const [status, setStatus] = useState('confirm')
+  const [status, setStatus] = useState('signin')
   const [user, setUser] = useState(null)
 
   return (
     <div className="min-h-screen bg-white flex">
-      {status === 'signup' ? <RegisterAuth setStatus={setStatus} setUser={setUser} user={user} /> : null}
-      {status === 'confirm' ? <ConfirmAuth setStatus={setStatus} setUser={setUser} user={user} /> : null}
+      {status === 'signin' ? <SignInAuth nextPath="/auctions-show" nextStatus="signup" setStatus={setStatus} setUser={setUser} user={user} /> : null}
+      {status === 'signup' ? <RegisterAuth nextStatus="confirm" setStatus={setStatus} setUser={setUser} user={user} /> : null}
+      {status === 'confirm' ? <ConfirmAuth useRouter={useRouter} nextPath="/auctions-list" setStatus={setStatus} setUser={setUser} user={user} /> : null}
 
       <div className="hidden lg:block relative w-0 flex-1">
         <img
@@ -22,9 +25,6 @@ const SignUp = () => {
           alt=""
         />
       </div>
-
-
-
     </div>
   )
 }

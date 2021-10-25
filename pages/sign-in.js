@@ -15,14 +15,14 @@ const SignIn = () => (
             Or{' '}
             <Link href="/sign-up">
               <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
-                start your 14-day free trial
+                Create a new account
               </a>
             </Link>
           </p>
         </div>
 
         <div className="mt-8">
-          <div>
+          {/* <div>
             <div>
               <p className="text-sm font-medium text-gray-700">Sign in with</p>
 
@@ -81,7 +81,7 @@ const SignIn = () => (
                 <span className="px-2 bg-white text-gray-500">Or continue with</span>
               </div>
             </div>
-          </div>
+          </div> */}
 
           <div className="mt-6">
             <form action="#" method="POST" className="space-y-6">

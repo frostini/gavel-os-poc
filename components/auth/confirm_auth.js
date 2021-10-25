@@ -5,18 +5,20 @@ import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
 import { useState } from "react"
 
-const ConfirmAuth = ({ user, setStatus, setUser }) => {
+const ConfirmAuth = ({ user, setStatus, setUser, nextPath }) => {
   const { handleSubmit, register } = useForm();
   const router = useRouter()
 
   async function confirmSignUp({ code }) {
+    const {username, password} = user
+    console.log(`user: `, user)
     try {
-      await Auth.confirmSignUp(user.username, code);
-
-      await Auth.signIn(user.username, user.password);
-
-      router.push('/auctions-list')
-      console.log(code)
+      const confirmation = await Auth.confirmSignUp(username, code);
+      const user = await Auth.signIn(username, password);
+      console.log(`code: `, code)
+      console.log(`user: `, user)
+      console.log(`confirmation: `, confirmation)
+      router.push(nextPath)
     } catch (error) {
       console.log('error confirming sign up', error);
     }
@@ -42,7 +44,7 @@ const ConfirmAuth = ({ user, setStatus, setUser }) => {
         <form onSubmit={handleSubmit(confirmSignUp)}
           className="space-y-6">
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label htmlFor="code" className="block text-sm font-medium text-gray-700">
                 Confirmation Code
               </label>
               <div className="mt-1">

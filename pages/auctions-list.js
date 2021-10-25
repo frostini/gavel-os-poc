@@ -1,4 +1,7 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useEffect } from 'react'
+import { Auth } from 'aws-amplify'
+import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
+
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import { ChevronDownIcon, FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
@@ -65,8 +68,19 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+function Example() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+  const [user, setUser] = useState(null)
+  useEffect(() => {
+    // Access the user session on the client
+    Auth.currentAuthenticatedUser()
+      .then(user => {
+        console.log("User: ", user)
+        setUser(user)
+      })
+      .catch(err => setUser(null))
+  }, [])
+
 
   return (
     <div className="bg-white">
@@ -93,7 +107,7 @@ export default function Example() {
               enterTo="translate-x-0"
               leave="transition ease-in-out duration-300 transform"
               leaveFrom="translate-x-0"
-              leaveTo="translate-x-full"
+              leaveTo="translate-x-full" 
             >
               <div className="ml-auto relative max-w-xs w-full h-full bg-white shadow-xl py-4 pb-12 flex flex-col overflow-y-auto">
                 <div className="px-4 flex items-center justify-between">
@@ -170,7 +184,8 @@ export default function Example() {
         </Transition.Root>
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative z-10 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
+          <div className="relative z-0 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
+          { user && <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">Welcome, {user.username}</h1> }
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">All Auctions</h1>
 
             <div className="flex items-center">
@@ -221,7 +236,7 @@ export default function Example() {
                 <span className="sr-only">View grid</span>
                 <ViewGridIcon className="w-5 h-5" aria-hidden="true" />
               </button> */}
-              
+
               <button
                 type="button"
                 className="p-2 -m-2 ml-4 sm:ml-6 text-gray-400 hover:text-gray-500 lg:hidden"
@@ -316,3 +331,4 @@ Example.getLayout = function getLayout(example) {
     </PublicLayout>
   )
 }
+export default withAuthenticator(Example);
