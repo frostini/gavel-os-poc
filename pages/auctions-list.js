@@ -3,6 +3,7 @@ import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import { ChevronDownIcon, FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
 import { PublicLayout } from '../components/layout'
+import { HorizontalList } from '../components/lists'
 
 const sortOptions = [
   { name: 'Category', href: '#', current: true },
@@ -216,10 +217,11 @@ export default function Example() {
                 </Transition>
               </Menu>
 
-              <button type="button" className="p-2 -m-2 ml-5 sm:ml-7 text-gray-400 hover:text-gray-500">
+              {/* <button type="button" className="p-2 -m-2 ml-5 sm:ml-7 text-gray-400 hover:text-gray-500">
                 <span className="sr-only">View grid</span>
                 <ViewGridIcon className="w-5 h-5" aria-hidden="true" />
-              </button>
+              </button> */}
+              
               <button
                 type="button"
                 className="p-2 -m-2 ml-4 sm:ml-6 text-gray-400 hover:text-gray-500 lg:hidden"
@@ -295,7 +297,9 @@ export default function Example() {
               {/* Product grid */}
               <div className="lg:col-span-3">
                 {/* Replace with your content */}
-                <div className="border-4 border-dashed border-gray-200 rounded-lg h-96 lg:h-full" />
+                
+<HorizontalList/>
+
                 {/* /End replace */}
               </div>
             </div>

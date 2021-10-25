@@ -150,6 +150,7 @@ export default function Example() {
                         {/* <DropdownMenuSelect /> */}
                         { navigationMap.categories.map( ({featured, name}) => (
                           < DropdownMenuSelect 
+                            key={name}
                             data={featured}
                             title={name} 
                           />
