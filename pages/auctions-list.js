@@ -1,12 +1,10 @@
 import { Fragment, useState, useEffect } from 'react'
-import { Auth } from 'aws-amplify'
-import { withAuthenticator, AmplifySignOut } from '@aws-amplify/ui-react'
-
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import { ChevronDownIcon, FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
 import { PublicLayout } from '../components/layout'
 import { HorizontalList } from '../components/lists'
+import { useAuth } from '../contexts/auth'
 
 const sortOptions = [
   { name: 'Category', href: '#', current: true },
@@ -70,18 +68,13 @@ function classNames(...classes) {
 
 function Example() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
-  const [user, setUser] = useState(null)
+  const { user, router, isAuthenticated, loading } = useAuth();
   useEffect(() => {
-    // Access the user session on the client
-    Auth.currentAuthenticatedUser()
-      .then(user => {
-        console.log("User: ", user)
-        setUser(user)
-      })
-      .catch(err => setUser(null))
+    if (!user && !loading){
+      router.push('/sign-up')
+    } 
   }, [])
-
-
+  if (!user) return null
   return (
     <div className="bg-white">
       <div>
@@ -312,9 +305,7 @@ function Example() {
               {/* Product grid */}
               <div className="lg:col-span-3">
                 {/* Replace with your content */}
-                
-<HorizontalList/>
-
+                <HorizontalList/>
                 {/* /End replace */}
               </div>
             </div>
@@ -326,9 +317,9 @@ function Example() {
 }
 Example.getLayout = function getLayout(example) {
   return (
-    <PublicLayout>
-      {example}
-    </PublicLayout>
+      <PublicLayout>
+        {example}
+      </PublicLayout>
   )
 }
-export default withAuthenticator(Example);
+export default Example;

@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { Auth } from 'aws-amplify';
 import { useRouter } from 'next/router';
 import { useState } from "react"
+import { useAuth } from '../contexts/auth'
 import { 
   ConfirmAuth,
   RegisterAuth,
@@ -11,10 +12,10 @@ import {
 const SignUp = () => {
   const [status, setStatus] = useState('signin')
   const [user, setUser] = useState(null)
-
+  const { login } = useAuth()
   return (
     <div className="min-h-screen bg-white flex">
-      {status === 'signin' ? <SignInAuth nextPath="/auctions-show" nextStatus="signup" setStatus={setStatus} setUser={setUser} user={user} /> : null}
+      {status === 'signin' ? <SignInAuth nextPath="/auctions-show" nextStatus="signup" setStatus={setStatus} setUser={setUser} user={user} login={login} /> : null}
       {status === 'signup' ? <RegisterAuth nextStatus="confirm" setStatus={setStatus} setUser={setUser} user={user} /> : null}
       {status === 'confirm' ? <ConfirmAuth useRouter={useRouter} nextPath="/auctions-list" setStatus={setStatus} setUser={setUser} user={user} /> : null}
 

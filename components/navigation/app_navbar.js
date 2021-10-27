@@ -11,9 +11,35 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Example({ user, loading, logout }) {
   const [open, setOpen] = useState(false)
 
+  const AuthNav = () => (
+    user && <a
+      href="#"
+      onClick={logout}
+      className="ml-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+    >
+      Sign Out
+    </a>
+  )
+  const NewSession = () => (
+    !user && <>
+      <Link href="/sign-in">
+        <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
+          Sign in
+        </a>
+      </Link>
+      <Link href="/sign-up">
+        <a
+          className="ml-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+        >
+          Sign up
+        </a>
+      </Link>
+    </>
+  )
+  
   return (
     <div className="bg-white sticky top-0 z-10">
       {/* Mobile menu */}
@@ -102,7 +128,7 @@ export default function Example() {
                 </div>
                 <div className="flow-root">
                   <a href="#" className="-m-2 p-2 block font-medium text-gray-900">
-                    Create an accounts
+                    Create Account
                   </a>
                 </div>
               </div>
@@ -181,18 +207,8 @@ export default function Example() {
                   </div>
                   <div className="flex-2 md:flex-1 flex items-center justify-end">
                     <div className="md:flex items-center justify-end md:flex-1 lg:w-0">
-                      <Link href="/sign-in">
-                        <a href="#" className="whitespace-nowrap text-base font-medium text-gray-500 hover:text-gray-900">
-                          Sign in
-                        </a>
-                      </Link>
-                      <Link href="/sign-up">
-                        <a
-                          className="ml-4 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-                        >
-                          Sign up
-                        </a>
-                      </Link>
+                      <AuthNav />
+                      <NewSession/>
                     </div>
                     {/* Mobile menu */}
                   </div>

@@ -5,15 +5,15 @@ import { useRouter } from 'next/router';
 import { useForm } from "react-hook-form";
 import { useState } from "react"
 
-const SignInAuth = ({ user, setStatus, setUser, nextStatus, nextPath }) => {
+
+const SignInAuth = ({ user, setStatus, setUser, nextStatus, nextPath, login }) => {
   const { handleSubmit, register } = useForm();
+
   const router = useRouter()
 
   async function onSubmit({ username, password }) {
     try {
-      const user = await Auth.signIn(username, password);
-      console.log(`sign inuser: `, user)
-      // router.push(nextPath)
+      login(username, password)
     } catch (error) {
       console.log('error signing in', error);
     }
