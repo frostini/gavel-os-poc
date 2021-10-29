@@ -38,7 +38,7 @@ const people = [
   // More people...
 ]
 
-export default function Example() {
+export default function Example({ data }) {
   return (
     <div className="flex flex-col">
       <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -77,8 +77,8 @@ export default function Example() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
-                {people.map((person) => (
-                  <RowCard person={person} key={person.email} />
+                {data.map((item) => (
+                  <RowCard item={item} key={item.id} />
                 ))}
               </tbody>
             </table>

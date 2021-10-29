@@ -35,6 +35,22 @@ export const createAuction = /* GraphQL */ `
         nextToken
         startedAt
       }
+      bids {
+        items {
+          id
+          auctionID
+          userID
+          value
+          unit
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
       _version
       _deleted
       _lastChangedAt
@@ -77,6 +93,22 @@ export const updateAuction = /* GraphQL */ `
         nextToken
         startedAt
       }
+      bids {
+        items {
+          id
+          auctionID
+          userID
+          value
+          unit
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
       _version
       _deleted
       _lastChangedAt
@@ -109,6 +141,22 @@ export const deleteAuction = /* GraphQL */ `
           description
           auctionID
           quantity
+          unit
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
+      bids {
+        items {
+          id
+          auctionID
+          userID
+          value
           unit
           _version
           _deleted
@@ -194,6 +242,141 @@ export const deleteAuctionable = /* GraphQL */ `
         region
         key
       }
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const createAuctionBid = /* GraphQL */ `
+  mutation CreateAuctionBid(
+    $input: CreateAuctionBidInput!
+    $condition: ModelAuctionBidConditionInput
+  ) {
+    createAuctionBid(input: $input, condition: $condition) {
+      id
+      auctionID
+      auction {
+        id
+        name
+        mechanism
+        startDateTime
+        description
+        image {
+          bucket
+          region
+          key
+        }
+        deliveryTerms
+        auctionables {
+          nextToken
+          startedAt
+        }
+        bids {
+          nextToken
+          startedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      userID
+      value
+      unit
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const updateAuctionBid = /* GraphQL */ `
+  mutation UpdateAuctionBid(
+    $input: UpdateAuctionBidInput!
+    $condition: ModelAuctionBidConditionInput
+  ) {
+    updateAuctionBid(input: $input, condition: $condition) {
+      id
+      auctionID
+      auction {
+        id
+        name
+        mechanism
+        startDateTime
+        description
+        image {
+          bucket
+          region
+          key
+        }
+        deliveryTerms
+        auctionables {
+          nextToken
+          startedAt
+        }
+        bids {
+          nextToken
+          startedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      userID
+      value
+      unit
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const deleteAuctionBid = /* GraphQL */ `
+  mutation DeleteAuctionBid(
+    $input: DeleteAuctionBidInput!
+    $condition: ModelAuctionBidConditionInput
+  ) {
+    deleteAuctionBid(input: $input, condition: $condition) {
+      id
+      auctionID
+      auction {
+        id
+        name
+        mechanism
+        startDateTime
+        description
+        image {
+          bucket
+          region
+          key
+        }
+        deliveryTerms
+        auctionables {
+          nextToken
+          startedAt
+        }
+        bids {
+          nextToken
+          startedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      userID
+      value
+      unit
       _version
       _deleted
       _lastChangedAt

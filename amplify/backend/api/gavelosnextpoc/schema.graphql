@@ -12,6 +12,7 @@ type Auction @model {
   image: S3Object
   deliveryTerms: String
   auctionables: [Auctionable] @connection(keyName: "byAuctionable", fields: ["id"])
+  bids: [AuctionBid] @connection(keyName: "byAuctionBid", fields: ["id"])
 }
 
 type Auctionable @model
@@ -23,6 +24,15 @@ type Auctionable @model
   quantity: Float
   unit: UnitType
   image: S3Object
+}
+type AuctionBid @model 
+  @key(name: "byAuctionBid", fields: ["auctionID", "value"]) {
+  id: ID!
+  auctionID: ID!
+  auction: Auction
+  userID: ID!
+  value: Float
+  unit: String
 }
 
 enum AuctionType {

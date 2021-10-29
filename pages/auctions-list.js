@@ -5,6 +5,8 @@ import { ChevronDownIcon, FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } fr
 import { PublicLayout } from '../components/layout'
 import { HorizontalList } from '../components/lists'
 import { useAuth } from '../contexts/auth'
+import { API } from 'aws-amplify';
+import { listAuctions } from '../src/graphql/queries'
 
 const sortOptions = [
   { name: 'Category', href: '#', current: true },
@@ -68,11 +70,21 @@ function classNames(...classes) {
 
 function Example() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
+  const [auctions, setAuctions] = useState([])
   const { user, router, isAuthenticated, loading } = useAuth();
   useEffect(() => {
     if (!user && !loading){
       router.push('/sign-up')
     } 
+  }, [])
+  useEffect(() => {
+    async function loadData() {
+      await API.graphql({ query: listAuctions })
+                .then(auctions => {
+                  setAuctions(auctions.data.listAuctions.items)
+                })
+    }
+    loadData()
   }, [])
   if (!user) return null
   return (
@@ -178,7 +190,9 @@ function Example() {
 
         <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative z-0 flex items-baseline justify-between pt-24 pb-6 border-b border-gray-200">
-          { user && <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">Welcome, {user.username}</h1> }
+          {
+          //  user && <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">Welcome, {user.username}</h1> 
+          }
             <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">All Auctions</h1>
 
             <div className="flex items-center">
@@ -305,7 +319,7 @@ function Example() {
               {/* Product grid */}
               <div className="lg:col-span-3">
                 {/* Replace with your content */}
-                <HorizontalList/>
+                <HorizontalList data={auctions} />
                 {/* /End replace */}
               </div>
             </div>

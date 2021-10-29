@@ -30,6 +30,10 @@ export const syncAuctions = /* GraphQL */ `
           nextToken
           startedAt
         }
+        bids {
+          nextToken
+          startedAt
+        }
         _version
         _deleted
         _lastChangedAt
@@ -72,6 +76,22 @@ export const getAuction = /* GraphQL */ `
         nextToken
         startedAt
       }
+      bids {
+        items {
+          id
+          auctionID
+          userID
+          value
+          unit
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        nextToken
+        startedAt
+      }
       _version
       _deleted
       _lastChangedAt
@@ -100,6 +120,10 @@ export const listAuctions = /* GraphQL */ `
         }
         deliveryTerms
         auctionables {
+          nextToken
+          startedAt
+        }
+        bids {
           nextToken
           startedAt
         }
@@ -191,6 +215,128 @@ export const listAuctionables = /* GraphQL */ `
           region
           key
         }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const syncAuctionBids = /* GraphQL */ `
+  query SyncAuctionBids(
+    $filter: ModelAuctionBidFilterInput
+    $limit: Int
+    $nextToken: String
+    $lastSync: AWSTimestamp
+  ) {
+    syncAuctionBids(
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+      lastSync: $lastSync
+    ) {
+      items {
+        id
+        auctionID
+        auction {
+          id
+          name
+          mechanism
+          startDateTime
+          description
+          deliveryTerms
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        userID
+        value
+        unit
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      nextToken
+      startedAt
+    }
+  }
+`;
+export const getAuctionBid = /* GraphQL */ `
+  query GetAuctionBid($id: ID!) {
+    getAuctionBid(id: $id) {
+      id
+      auctionID
+      auction {
+        id
+        name
+        mechanism
+        startDateTime
+        description
+        image {
+          bucket
+          region
+          key
+        }
+        deliveryTerms
+        auctionables {
+          nextToken
+          startedAt
+        }
+        bids {
+          nextToken
+          startedAt
+        }
+        _version
+        _deleted
+        _lastChangedAt
+        createdAt
+        updatedAt
+      }
+      userID
+      value
+      unit
+      _version
+      _deleted
+      _lastChangedAt
+      createdAt
+      updatedAt
+    }
+  }
+`;
+export const listAuctionBids = /* GraphQL */ `
+  query ListAuctionBids(
+    $filter: ModelAuctionBidFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listAuctionBids(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        auctionID
+        auction {
+          id
+          name
+          mechanism
+          startDateTime
+          description
+          deliveryTerms
+          _version
+          _deleted
+          _lastChangedAt
+          createdAt
+          updatedAt
+        }
+        userID
+        value
+        unit
         _version
         _deleted
         _lastChangedAt
