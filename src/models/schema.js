@@ -70,6 +70,20 @@ export const schema = {
                         "associatedWith": "auctionID"
                     }
                 },
+                "bids": {
+                    "name": "bids",
+                    "isArray": true,
+                    "type": {
+                        "model": "AuctionBid"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "isArrayNullable": true,
+                    "association": {
+                        "connectionType": "HAS_MANY",
+                        "associatedWith": "auctionID"
+                    }
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -187,6 +201,80 @@ export const schema = {
                     }
                 }
             ]
+        },
+        "AuctionBid": {
+            "name": "AuctionBid",
+            "fields": {
+                "id": {
+                    "name": "id",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "auctionID": {
+                    "name": "auctionID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "userID": {
+                    "name": "userID",
+                    "isArray": false,
+                    "type": "ID",
+                    "isRequired": true,
+                    "attributes": []
+                },
+                "value": {
+                    "name": "value",
+                    "isArray": false,
+                    "type": "Float",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "unit": {
+                    "name": "unit",
+                    "isArray": false,
+                    "type": "String",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "createdAt": {
+                    "name": "createdAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                },
+                "updatedAt": {
+                    "name": "updatedAt",
+                    "isArray": false,
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": [],
+                    "isReadOnly": true
+                }
+            },
+            "syncable": true,
+            "pluralName": "AuctionBids",
+            "attributes": [
+                {
+                    "type": "model",
+                    "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "byAuctionBid",
+                        "fields": [
+                            "auctionID",
+                            "value"
+                        ]
+                    }
+                }
+            ]
         }
     },
     "enums": {
@@ -240,5 +328,5 @@ export const schema = {
             }
         }
     },
-    "version": "dba359f44afad3cd46fe59d03a492427"
+    "version": "010b91cf86b0397ab4c50214c569c53d"
 };

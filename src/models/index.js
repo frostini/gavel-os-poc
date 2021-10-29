@@ -19,11 +19,12 @@ const UnitType = {
   "TON": "ton"
 };
 
-const { Auction, Auctionable, S3Object } = initSchema(schema);
+const { Auction, Auctionable, AuctionBid, S3Object } = initSchema(schema);
 
 export {
   Auction,
   Auctionable,
+  AuctionBid,
   AuctionType,
   UnitType,
   S3Object

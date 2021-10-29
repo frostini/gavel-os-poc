@@ -32,6 +32,10 @@ type AuctionableMetaData = {
   readOnlyFields: 'createdAt' | 'updatedAt';
 }
 
+type AuctionBidMetaData = {
+  readOnlyFields: 'createdAt' | 'updatedAt';
+}
+
 export declare class Auction {
   readonly id: string;
   readonly name?: string;
@@ -41,6 +45,7 @@ export declare class Auction {
   readonly image?: S3Object;
   readonly deliveryTerms?: string;
   readonly auctionables?: (Auctionable | null)[];
+  readonly bids?: (AuctionBid | null)[];
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Auction, AuctionMetaData>);
@@ -59,4 +64,16 @@ export declare class Auctionable {
   readonly updatedAt?: string;
   constructor(init: ModelInit<Auctionable, AuctionableMetaData>);
   static copyOf(source: Auctionable, mutator: (draft: MutableModel<Auctionable, AuctionableMetaData>) => MutableModel<Auctionable, AuctionableMetaData> | void): Auctionable;
+}
+
+export declare class AuctionBid {
+  readonly id: string;
+  readonly auctionID: string;
+  readonly userID: string;
+  readonly value?: number;
+  readonly unit?: string;
+  readonly createdAt?: string;
+  readonly updatedAt?: string;
+  constructor(init: ModelInit<AuctionBid, AuctionBidMetaData>);
+  static copyOf(source: AuctionBid, mutator: (draft: MutableModel<AuctionBid, AuctionBidMetaData>) => MutableModel<AuctionBid, AuctionBidMetaData> | void): AuctionBid;
 }
