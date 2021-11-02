@@ -159,7 +159,8 @@ export default function Example({ user, loading, logout }) {
                 <div className="h-16 flex items-center justify-between">
                   {/* Logo (lg+) */}
                   <div className="hidden lg:flex-1 lg:flex lg:items-center">
-                    <a href="#">
+                    <Link href="/">
+                    <a >
                       <span className="sr-only">Workflow</span>
                       <Image
                               src="/gavel_os_logo.svg"
@@ -168,6 +169,7 @@ export default function Example({ user, loading, logout }) {
                               height={70}
                       />
                     </a>
+                    </Link>
                   </div>
                   <div className="hidden h-full lg:flex">
                     {/* Flyout menus */}

@@ -18,6 +18,7 @@ Load seed data and test API
 
 https://docs.amplify.aws/cli/graphql-transformer/auth/#definition
 Look into authentication of the model to be created with user id as well and be attributable
+  -for use with -auction, -bid, -house
 
 https://nextjs.org/docs/routing/dynamic-routes
 Add query parameters to URL of route for search
@@ -32,7 +33,7 @@ check naming of components and conventions to update/clean
 Add skeleton/placeholder data to form elements
   https://skeletonreact.com/
 
-add authenticated user menus
+add authenticated user menus/off canvas options
 
 
 AMPLIFY QUERYING AND STUFF

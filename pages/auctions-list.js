@@ -2,11 +2,27 @@ import { Fragment, useState, useEffect } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XIcon } from '@heroicons/react/outline'
 import { ChevronDownIcon, FilterIcon, MinusSmIcon, PlusSmIcon, ViewGridIcon } from '@heroicons/react/solid'
+import { Breadcrumbs } from '../components/navigation'
 import { PublicLayout } from '../components/layout'
-import { HorizontalList } from '../components/lists'
+import { GridList } from '../components/lists'
 import { useAuth } from '../contexts/auth'
 import { API } from 'aws-amplify';
 import { listAuctions } from '../src/graphql/queries'
+import { AuctionCard } from '../components/cards'
+
+const people = [
+  {
+    name: 'Honda Tractor',
+    title: 'Machinery',
+    endingOn: '2 days left',
+    role: 'Dutch Auction',
+    email: 'janecooper@example.com',
+    telephone: '+1-202-555-0170',
+    imageUrl:
+      'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=4&w=256&h=256&q=60',
+  },
+  // More people...
+]
 
 const sortOptions = [
   { name: 'Category', href: '#', current: true },
@@ -193,7 +209,11 @@ function Example() {
           {
           //  user && <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">Welcome, {user.username}</h1> 
           }
-            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">All Auctions</h1>
+            <h1 className="text-4xl font-extrabold tracking-tight text-gray-900">
+              {/* All Auctions */}
+              <Breadcrumbs/>
+            </h1>
+            
 
             <div className="flex items-center">
               <Menu as="div" className="relative inline-block text-left">
@@ -319,7 +339,8 @@ function Example() {
               {/* Product grid */}
               <div className="lg:col-span-3">
                 {/* Replace with your content */}
-                <HorizontalList data={auctions} />
+                {/* <HorizontalList data={auctions} /> */}
+                <GridList data={people} other={auctions} />
                 {/* /End replace */}
               </div>
             </div>
