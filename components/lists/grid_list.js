@@ -10,7 +10,7 @@ export default function Example({ data, other }) {
 
   return (
     <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-      {other.map((el) => (
+      {other && other.map((el) => (
         <li key={el.name} className="col-span-1 bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="w-full flex justify-between p-6 space-x-6">
             <div className="flex-1 truncate">
@@ -59,7 +59,7 @@ export default function Example({ data, other }) {
                     />
                   </div>
                 </div>
-                <div className="flex-1 flex">
+                <div className="flex-1 flex flex-row justify-center space-x-2">
                   <button
                     type="button"
                     className="inline-flex items-center p-2 border border-transparent rounded-full shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"

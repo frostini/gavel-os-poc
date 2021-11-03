@@ -97,7 +97,11 @@ function Example() {
     async function loadData() {
       await API.graphql({ query: listAuctions })
                 .then(auctions => {
+                  console.log('auctions: ', auctions)
                   setAuctions(auctions.data.listAuctions.items)
+                })
+                .catch( err => {
+                  console.log('errr: ', err)
                 })
     }
     loadData()
