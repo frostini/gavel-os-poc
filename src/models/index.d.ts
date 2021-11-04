@@ -1,5 +1,12 @@
 import { ModelInit, MutableModel, PersistentModelConstructor } from "@aws-amplify/datastore";
 
+export enum AuctionStatusType {
+  DRAFT = "draft",
+  PREVIEW = "preview",
+  LIVE = "live",
+  COMPLETE = "complete"
+}
+
 export enum AuctionType {
   DUTCH = "dutch",
   ENGLISH = "english",
@@ -39,8 +46,10 @@ type AuctionBidMetaData = {
 export declare class Auction {
   readonly id: string;
   readonly name?: string;
+  readonly status?: AuctionStatusType | keyof typeof AuctionStatusType;
   readonly mechanism?: AuctionType | keyof typeof AuctionType;
   readonly startDateTime?: string;
+  readonly publishDateTime?: string;
   readonly description?: string;
   readonly image?: S3Object;
   readonly deliveryTerms?: string;
@@ -69,7 +78,6 @@ export declare class Auctionable {
 export declare class AuctionBid {
   readonly id: string;
   readonly auctionID: string;
-  readonly userID: string;
   readonly value?: number;
   readonly unit?: string;
   readonly createdAt?: string;

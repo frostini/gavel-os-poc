@@ -3,11 +3,16 @@ type S3Object {
   region: String!
   key: String!
 }
-type Auction @model {
+type Auction @model 
+  @key(name: "auctionsByMechanism", fields: ["mechanism"], queryField: "auctionsByMechanism")
+  @auth(rules: [{ allow: owner, operations: [create, delete, update] }])
+{
   id: ID!
   name: String
+  status: AuctionStatusType
   mechanism: AuctionType
-  startDateTime: AWSDate
+  startDateTime: AWSDateTime
+  publishDateTime: AWSDateTime
   description: String
   image: S3Object
   deliveryTerms: String
@@ -26,11 +31,10 @@ type Auctionable @model
   image: S3Object
 }
 type AuctionBid @model 
+  @auth(rules: [{ allow: owner, operations: [create, delete, update] }])
   @key(name: "byAuctionBid", fields: ["auctionID", "value"]) {
   id: ID!
   auctionID: ID!
-  auction: Auction
-  userID: ID!
   value: Float
   unit: String
 }
@@ -39,6 +43,12 @@ enum AuctionType {
   dutch
   english
   texas
+}
+enum AuctionStatusType {
+  draft
+  preview
+  live
+  complete
 }
 enum UnitType {
   item

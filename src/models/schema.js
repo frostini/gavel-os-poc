@@ -17,6 +17,15 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "status": {
+                    "name": "status",
+                    "isArray": false,
+                    "type": {
+                        "enum": "AuctionStatusType"
+                    },
+                    "isRequired": false,
+                    "attributes": []
+                },
                 "mechanism": {
                     "name": "mechanism",
                     "isArray": false,
@@ -29,7 +38,14 @@ export const schema = {
                 "startDateTime": {
                     "name": "startDateTime",
                     "isArray": false,
-                    "type": "AWSDate",
+                    "type": "AWSDateTime",
+                    "isRequired": false,
+                    "attributes": []
+                },
+                "publishDateTime": {
+                    "name": "publishDateTime",
+                    "isArray": false,
+                    "type": "AWSDateTime",
                     "isRequired": false,
                     "attributes": []
                 },
@@ -107,6 +123,34 @@ export const schema = {
                 {
                     "type": "model",
                     "properties": {}
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "auctionsByMechanism",
+                        "fields": [
+                            "mechanism"
+                        ],
+                        "queryField": "auctionsByMechanism"
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "operations": [
+                                    "create",
+                                    "delete",
+                                    "update"
+                                ],
+                                "identityClaim": "cognito:username"
+                            }
+                        ]
+                    }
                 }
             ]
         },
@@ -219,13 +263,6 @@ export const schema = {
                     "isRequired": true,
                     "attributes": []
                 },
-                "userID": {
-                    "name": "userID",
-                    "isArray": false,
-                    "type": "ID",
-                    "isRequired": true,
-                    "attributes": []
-                },
                 "value": {
                     "name": "value",
                     "isArray": false,
@@ -273,11 +310,38 @@ export const schema = {
                             "value"
                         ]
                     }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "operations": [
+                                    "create",
+                                    "delete",
+                                    "update"
+                                ],
+                                "identityClaim": "cognito:username"
+                            }
+                        ]
+                    }
                 }
             ]
         }
     },
     "enums": {
+        "AuctionStatusType": {
+            "name": "AuctionStatusType",
+            "values": [
+                "draft",
+                "preview",
+                "live",
+                "complete"
+            ]
+        },
         "AuctionType": {
             "name": "AuctionType",
             "values": [
@@ -328,5 +392,5 @@ export const schema = {
             }
         }
     },
-    "version": "010b91cf86b0397ab4c50214c569c53d"
+    "version": "2738728e6f069ea494ff1cd5d35ca02c"
 };

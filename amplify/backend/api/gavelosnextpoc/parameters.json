@@ -1,5 +1,11 @@
 {
   "AppSyncApiName": "gavelosnextpoc",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authgavelosnextpocca6a003e",
+      "Outputs.UserPoolId"
+    ]
+  }
 }

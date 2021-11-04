@@ -11,7 +11,7 @@ Some next steps:
 
  npm audit fix
 
- amplify update api
+ "amplify update api"
  
 
 Some next steps:

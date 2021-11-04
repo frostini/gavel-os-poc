@@ -6,8 +6,10 @@ export const onCreateAuction = /* GraphQL */ `
     onCreateAuction {
       id
       name
+      status
       mechanism
       startDateTime
+      publishDateTime
       description
       image {
         bucket
@@ -36,7 +38,6 @@ export const onCreateAuction = /* GraphQL */ `
         items {
           id
           auctionID
-          userID
           value
           unit
           _version
@@ -44,6 +45,7 @@ export const onCreateAuction = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -53,6 +55,7 @@ export const onCreateAuction = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -61,8 +64,10 @@ export const onUpdateAuction = /* GraphQL */ `
     onUpdateAuction {
       id
       name
+      status
       mechanism
       startDateTime
+      publishDateTime
       description
       image {
         bucket
@@ -91,7 +96,6 @@ export const onUpdateAuction = /* GraphQL */ `
         items {
           id
           auctionID
-          userID
           value
           unit
           _version
@@ -99,6 +103,7 @@ export const onUpdateAuction = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -108,6 +113,7 @@ export const onUpdateAuction = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -116,8 +122,10 @@ export const onDeleteAuction = /* GraphQL */ `
     onDeleteAuction {
       id
       name
+      status
       mechanism
       startDateTime
+      publishDateTime
       description
       image {
         bucket
@@ -146,7 +154,6 @@ export const onDeleteAuction = /* GraphQL */ `
         items {
           id
           auctionID
-          userID
           value
           unit
           _version
@@ -154,6 +161,7 @@ export const onDeleteAuction = /* GraphQL */ `
           _lastChangedAt
           createdAt
           updatedAt
+          owner
         }
         nextToken
         startedAt
@@ -163,6 +171,7 @@ export const onDeleteAuction = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -237,33 +246,6 @@ export const onCreateAuctionBid = /* GraphQL */ `
     onCreateAuctionBid {
       id
       auctionID
-      auction {
-        id
-        name
-        mechanism
-        startDateTime
-        description
-        image {
-          bucket
-          region
-          key
-        }
-        deliveryTerms
-        auctionables {
-          nextToken
-          startedAt
-        }
-        bids {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userID
       value
       unit
       _version
@@ -271,6 +253,7 @@ export const onCreateAuctionBid = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -279,33 +262,6 @@ export const onUpdateAuctionBid = /* GraphQL */ `
     onUpdateAuctionBid {
       id
       auctionID
-      auction {
-        id
-        name
-        mechanism
-        startDateTime
-        description
-        image {
-          bucket
-          region
-          key
-        }
-        deliveryTerms
-        auctionables {
-          nextToken
-          startedAt
-        }
-        bids {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userID
       value
       unit
       _version
@@ -313,6 +269,7 @@ export const onUpdateAuctionBid = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -321,33 +278,6 @@ export const onDeleteAuctionBid = /* GraphQL */ `
     onDeleteAuctionBid {
       id
       auctionID
-      auction {
-        id
-        name
-        mechanism
-        startDateTime
-        description
-        image {
-          bucket
-          region
-          key
-        }
-        deliveryTerms
-        auctionables {
-          nextToken
-          startedAt
-        }
-        bids {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      userID
       value
       unit
       _version
@@ -355,6 +285,7 @@ export const onDeleteAuctionBid = /* GraphQL */ `
       _lastChangedAt
       createdAt
       updatedAt
+      owner
     }
   }
 `;

@@ -2,6 +2,13 @@
 import { initSchema } from '@aws-amplify/datastore';
 import { schema } from './schema';
 
+const AuctionStatusType = {
+  "DRAFT": "draft",
+  "PREVIEW": "preview",
+  "LIVE": "live",
+  "COMPLETE": "complete"
+};
+
 const AuctionType = {
   "DUTCH": "dutch",
   "ENGLISH": "english",
@@ -25,6 +32,7 @@ export {
   Auction,
   Auctionable,
   AuctionBid,
+  AuctionStatusType,
   AuctionType,
   UnitType,
   S3Object
