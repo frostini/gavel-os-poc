@@ -25,14 +25,10 @@ export const onCreateAuction = /* GraphQL */ `
           auctionID
           quantity
           unit
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
-        startedAt
       }
       bids {
         items {
@@ -40,19 +36,12 @@ export const onCreateAuction = /* GraphQL */ `
           auctionID
           value
           unit
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
           owner
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       owner
@@ -83,14 +72,10 @@ export const onUpdateAuction = /* GraphQL */ `
           auctionID
           quantity
           unit
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
-        startedAt
       }
       bids {
         items {
@@ -98,19 +83,12 @@ export const onUpdateAuction = /* GraphQL */ `
           auctionID
           value
           unit
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
           owner
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       owner
@@ -141,14 +119,10 @@ export const onDeleteAuction = /* GraphQL */ `
           auctionID
           quantity
           unit
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
-        startedAt
       }
       bids {
         items {
@@ -156,19 +130,12 @@ export const onDeleteAuction = /* GraphQL */ `
           auctionID
           value
           unit
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
           owner
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       owner
@@ -189,9 +156,30 @@ export const onCreateAuctionable = /* GraphQL */ `
         region
         key
       }
-      _version
-      _deleted
-      _lastChangedAt
+      auction {
+        id
+        name
+        status
+        mechanism
+        startDateTime
+        publishDateTime
+        description
+        image {
+          bucket
+          region
+          key
+        }
+        deliveryTerms
+        auctionables {
+          nextToken
+        }
+        bids {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
     }
@@ -211,9 +199,30 @@ export const onUpdateAuctionable = /* GraphQL */ `
         region
         key
       }
-      _version
-      _deleted
-      _lastChangedAt
+      auction {
+        id
+        name
+        status
+        mechanism
+        startDateTime
+        publishDateTime
+        description
+        image {
+          bucket
+          region
+          key
+        }
+        deliveryTerms
+        auctionables {
+          nextToken
+        }
+        bids {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
     }
@@ -233,9 +242,30 @@ export const onDeleteAuctionable = /* GraphQL */ `
         region
         key
       }
-      _version
-      _deleted
-      _lastChangedAt
+      auction {
+        id
+        name
+        status
+        mechanism
+        startDateTime
+        publishDateTime
+        description
+        image {
+          bucket
+          region
+          key
+        }
+        deliveryTerms
+        auctionables {
+          nextToken
+        }
+        bids {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
     }
@@ -248,9 +278,30 @@ export const onCreateAuctionBid = /* GraphQL */ `
       auctionID
       value
       unit
-      _version
-      _deleted
-      _lastChangedAt
+      auction {
+        id
+        name
+        status
+        mechanism
+        startDateTime
+        publishDateTime
+        description
+        image {
+          bucket
+          region
+          key
+        }
+        deliveryTerms
+        auctionables {
+          nextToken
+        }
+        bids {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
       owner
@@ -264,9 +315,30 @@ export const onUpdateAuctionBid = /* GraphQL */ `
       auctionID
       value
       unit
-      _version
-      _deleted
-      _lastChangedAt
+      auction {
+        id
+        name
+        status
+        mechanism
+        startDateTime
+        publishDateTime
+        description
+        image {
+          bucket
+          region
+          key
+        }
+        deliveryTerms
+        auctionables {
+          nextToken
+        }
+        bids {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
       owner
@@ -280,9 +352,30 @@ export const onDeleteAuctionBid = /* GraphQL */ `
       auctionID
       value
       unit
-      _version
-      _deleted
-      _lastChangedAt
+      auction {
+        id
+        name
+        status
+        mechanism
+        startDateTime
+        publishDateTime
+        description
+        image {
+          bucket
+          region
+          key
+        }
+        deliveryTerms
+        auctionables {
+          nextToken
+        }
+        bids {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
       owner

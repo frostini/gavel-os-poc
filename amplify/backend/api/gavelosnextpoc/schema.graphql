@@ -5,7 +5,11 @@ type S3Object {
 }
 type Auction @model 
   @key(name: "auctionsByMechanism", fields: ["mechanism"], queryField: "auctionsByMechanism")
-  @auth(rules: [{ allow: owner, operations: [create, delete, update] }])
+  @key(name: "auctionsByStatus", fields: ["status"], queryField: "auctionsByStatus")
+  @key(name: "auctionsByName", fields: ["name"], queryField: "auctionsByName")
+  @auth(rules: [
+    { allow: owner, operations: [create, delete, update] },
+  ])
 {
   id: ID!
   name: String
@@ -29,14 +33,18 @@ type Auctionable @model
   quantity: Float
   unit: UnitType
   image: S3Object
+  auction: Auction @connection(fields: ["auctionID"])
 }
 type AuctionBid @model 
-  @auth(rules: [{ allow: owner, operations: [create, delete, update] }])
+  @auth(rules: [
+    { allow: owner, operations: [create, delete, update] },
+  ])
   @key(name: "byAuctionBid", fields: ["auctionID", "value"]) {
   id: ID!
   auctionID: ID!
   value: Float
   unit: String
+  auction: Auction @connection(fields: ["auctionID"])
 }
 
 enum AuctionType {

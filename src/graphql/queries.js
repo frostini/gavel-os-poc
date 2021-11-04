@@ -1,53 +1,6 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const syncAuctions = /* GraphQL */ `
-  query SyncAuctions(
-    $filter: ModelAuctionFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncAuctions(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        name
-        status
-        mechanism
-        startDateTime
-        publishDateTime
-        description
-        image {
-          bucket
-          region
-          key
-        }
-        deliveryTerms
-        auctionables {
-          nextToken
-          startedAt
-        }
-        bids {
-          nextToken
-          startedAt
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-      startedAt
-    }
-  }
-`;
 export const getAuction = /* GraphQL */ `
   query GetAuction($id: ID!) {
     getAuction(id: $id) {
@@ -72,14 +25,10 @@ export const getAuction = /* GraphQL */ `
           auctionID
           quantity
           unit
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
         }
         nextToken
-        startedAt
       }
       bids {
         items {
@@ -87,19 +36,12 @@ export const getAuction = /* GraphQL */ `
           auctionID
           value
           unit
-          _version
-          _deleted
-          _lastChangedAt
           createdAt
           updatedAt
           owner
         }
         nextToken
-        startedAt
       }
-      _version
-      _deleted
-      _lastChangedAt
       createdAt
       updatedAt
       owner
@@ -129,57 +71,15 @@ export const listAuctions = /* GraphQL */ `
         deliveryTerms
         auctionables {
           nextToken
-          startedAt
         }
         bids {
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
         owner
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncAuctionables = /* GraphQL */ `
-  query SyncAuctionables(
-    $filter: ModelAuctionableFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncAuctionables(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        content
-        description
-        auctionID
-        quantity
-        unit
-        image {
-          bucket
-          region
-          key
-        }
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -197,9 +97,30 @@ export const getAuctionable = /* GraphQL */ `
         region
         key
       }
-      _version
-      _deleted
-      _lastChangedAt
+      auction {
+        id
+        name
+        status
+        mechanism
+        startDateTime
+        publishDateTime
+        description
+        image {
+          bucket
+          region
+          key
+        }
+        deliveryTerms
+        auctionables {
+          nextToken
+        }
+        bids {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
     }
@@ -224,44 +145,23 @@ export const listAuctionables = /* GraphQL */ `
           region
           key
         }
-        _version
-        _deleted
-        _lastChangedAt
+        auction {
+          id
+          name
+          status
+          mechanism
+          startDateTime
+          publishDateTime
+          description
+          deliveryTerms
+          createdAt
+          updatedAt
+          owner
+        }
         createdAt
         updatedAt
       }
       nextToken
-      startedAt
-    }
-  }
-`;
-export const syncAuctionBids = /* GraphQL */ `
-  query SyncAuctionBids(
-    $filter: ModelAuctionBidFilterInput
-    $limit: Int
-    $nextToken: String
-    $lastSync: AWSTimestamp
-  ) {
-    syncAuctionBids(
-      filter: $filter
-      limit: $limit
-      nextToken: $nextToken
-      lastSync: $lastSync
-    ) {
-      items {
-        id
-        auctionID
-        value
-        unit
-        _version
-        _deleted
-        _lastChangedAt
-        createdAt
-        updatedAt
-        owner
-      }
-      nextToken
-      startedAt
     }
   }
 `;
@@ -272,9 +172,30 @@ export const getAuctionBid = /* GraphQL */ `
       auctionID
       value
       unit
-      _version
-      _deleted
-      _lastChangedAt
+      auction {
+        id
+        name
+        status
+        mechanism
+        startDateTime
+        publishDateTime
+        description
+        image {
+          bucket
+          region
+          key
+        }
+        deliveryTerms
+        auctionables {
+          nextToken
+        }
+        bids {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
       createdAt
       updatedAt
       owner
@@ -293,15 +214,24 @@ export const listAuctionBids = /* GraphQL */ `
         auctionID
         value
         unit
-        _version
-        _deleted
-        _lastChangedAt
+        auction {
+          id
+          name
+          status
+          mechanism
+          startDateTime
+          publishDateTime
+          description
+          deliveryTerms
+          createdAt
+          updatedAt
+          owner
+        }
         createdAt
         updatedAt
         owner
       }
       nextToken
-      startedAt
     }
   }
 `;
@@ -336,21 +266,101 @@ export const auctionsByMechanism = /* GraphQL */ `
         deliveryTerms
         auctionables {
           nextToken
-          startedAt
         }
         bids {
           nextToken
-          startedAt
         }
-        _version
-        _deleted
-        _lastChangedAt
         createdAt
         updatedAt
         owner
       }
       nextToken
-      startedAt
+    }
+  }
+`;
+export const auctionsByStatus = /* GraphQL */ `
+  query AuctionsByStatus(
+    $status: AuctionStatusType
+    $sortDirection: ModelSortDirection
+    $filter: ModelAuctionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    auctionsByStatus(
+      status: $status
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        status
+        mechanism
+        startDateTime
+        publishDateTime
+        description
+        image {
+          bucket
+          region
+          key
+        }
+        deliveryTerms
+        auctionables {
+          nextToken
+        }
+        bids {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
+    }
+  }
+`;
+export const auctionsByName = /* GraphQL */ `
+  query AuctionsByName(
+    $name: String
+    $sortDirection: ModelSortDirection
+    $filter: ModelAuctionFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    auctionsByName(
+      name: $name
+      sortDirection: $sortDirection
+      filter: $filter
+      limit: $limit
+      nextToken: $nextToken
+    ) {
+      items {
+        id
+        name
+        status
+        mechanism
+        startDateTime
+        publishDateTime
+        description
+        image {
+          bucket
+          region
+          key
+        }
+        deliveryTerms
+        auctionables {
+          nextToken
+        }
+        bids {
+          nextToken
+        }
+        createdAt
+        updatedAt
+        owner
+      }
+      nextToken
     }
   }
 `;
