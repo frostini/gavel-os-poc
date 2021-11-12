@@ -1,3 +1,131 @@
+take 1st pomo to clean up notes
+add hook 
+
+
+
+
+auctions
+?
+  mechanism
+  status
+  name
+
+<!-- APPSYNC QUERY -->
+query MyQuery {
+  listAuctions(filter: {status: {eq: live}, name: {contains: "s"}}) {
+    items {
+      id
+      name
+      status
+    }
+  }
+}
+<!-- API query equivalent -->
+
+https://docs.amplify.aws/lib/graphqlapi/query-data/q/platform/js/#compound-filters
+const { data: { listProducts: { items: itemsPage1, nextToken } } } = await API.graphql({ query: listProducts, variables: { limit: 20, /* add filter as needed */ }}));
+ 
+
+
+
+{ match: "Stream" }
+
+
+query MyQuery {
+  listAuctions(filter: {
+      name: {
+      	contains: "s"
+      }}){
+    items{
+      id
+      name
+    }
+  }
+}
+
+
+
+
+
+
+
+new
+add key
+  auctionBycategory
+  auctionByPrice
+    highestBid
+
+?can you index a connection to sort by default
+
+
+add/load image in query
+
+auctions/:id
+auctions/new
+auctions/:id/bids/create
+auctions/:id/bids/:id
+auctions/:id/bids
+auctions/:id/fulfill/:flow/:step
+
+---
+NET NEW
+----
+
+organizations/
+organizations/:id
+organizations/create/:step
+
+user/
+user/auctions
+  bidded
+  active/past
+user/favorites
+  active/past
+user/bids
+  all
+user/items
+  all
+
+
+
+
+mutation MyMutation {
+  createAuctionBid(
+    input: {
+      auctionID: "ae5636f9-4826-455c-9f4d-e973e32e69dd",
+      value: 5.5,
+      unit: "USD"
+    }) {
+    id
+    auctionID
+    value
+    unit
+  }
+}
+
+
+query MyQuery {
+  listAuctions {
+    items {
+      name
+      id
+      bids {
+        items {
+          auctionID
+          id
+          unit
+          value
+        }
+      }
+    }
+  }
+}
+
+
+
+
+
+
 add list view of high level attributes and actions
   update card/ui elements to match with better auction details
   update query loading this data to the cards and related object infrastructure
@@ -80,3 +208,39 @@ https://medium.com/@seanmcp/how-to-create-a-render-prop-component-aa3ff54443e6
 https://flexiple.com/react/render-props-an-advanced-react-pattern/
 https://blog.logrocket.com/react-render-props-vs-custom-hooks/
 
+
+
+Access Patterns
+
+Auctions
+
+Actions/Stories
+Authorization/Roles/Users
+
+Scenes
+Routes
+
+Models
+  Names
+  Attributes
+  Methods
+  Associations
+Libs
+
+Tests
+Design
+StoryBook
+
+
+
+seller
+room
+cellar
+gallery
+org
+auctioneer
+house
+
+
+https://demoair.wondershare.com/
+https://www.wondershare.com/products-solutions/all-products.html?_ga=2.180186022.306634846.1636662264-888503875.1636662264

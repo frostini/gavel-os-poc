@@ -135,6 +135,26 @@ export const schema = {
                     }
                 },
                 {
+                    "type": "key",
+                    "properties": {
+                        "name": "auctionsByStatus",
+                        "fields": [
+                            "status"
+                        ],
+                        "queryField": "auctionsByStatus"
+                    }
+                },
+                {
+                    "type": "key",
+                    "properties": {
+                        "name": "auctionsByName",
+                        "fields": [
+                            "name"
+                        ],
+                        "queryField": "auctionsByName"
+                    }
+                },
+                {
                     "type": "auth",
                     "properties": {
                         "rules": [
@@ -143,11 +163,19 @@ export const schema = {
                                 "ownerField": "owner",
                                 "allow": "owner",
                                 "operations": [
+                                    "read",
                                     "create",
                                     "delete",
                                     "update"
                                 ],
                                 "identityClaim": "cognito:username"
+                            },
+                            {
+                                "allow": "public",
+                                "provider": "apiKey",
+                                "operations": [
+                                    "read"
+                                ]
                             }
                         ]
                     }
@@ -210,6 +238,19 @@ export const schema = {
                     "isRequired": false,
                     "attributes": []
                 },
+                "auction": {
+                    "name": "auction",
+                    "isArray": false,
+                    "type": {
+                        "model": "Auction"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "auctionableAuctionId"
+                    }
+                },
                 "createdAt": {
                     "name": "createdAt",
                     "isArray": false,
@@ -241,6 +282,32 @@ export const schema = {
                         "fields": [
                             "auctionID",
                             "content"
+                        ]
+                    }
+                },
+                {
+                    "type": "auth",
+                    "properties": {
+                        "rules": [
+                            {
+                                "allow": "public",
+                                "provider": "apiKey",
+                                "operations": [
+                                    "read"
+                                ]
+                            },
+                            {
+                                "provider": "userPools",
+                                "ownerField": "owner",
+                                "allow": "owner",
+                                "operations": [
+                                    "read",
+                                    "create",
+                                    "delete",
+                                    "update"
+                                ],
+                                "identityClaim": "cognito:username"
+                            }
                         ]
                     }
                 }
@@ -276,6 +343,19 @@ export const schema = {
                     "type": "String",
                     "isRequired": false,
                     "attributes": []
+                },
+                "auction": {
+                    "name": "auction",
+                    "isArray": false,
+                    "type": {
+                        "model": "Auction"
+                    },
+                    "isRequired": false,
+                    "attributes": [],
+                    "association": {
+                        "connectionType": "BELONGS_TO",
+                        "targetName": "auctionBidAuctionId"
+                    }
                 },
                 "createdAt": {
                     "name": "createdAt",
@@ -316,10 +396,18 @@ export const schema = {
                     "properties": {
                         "rules": [
                             {
+                                "allow": "public",
+                                "provider": "apiKey",
+                                "operations": [
+                                    "read"
+                                ]
+                            },
+                            {
                                 "provider": "userPools",
                                 "ownerField": "owner",
                                 "allow": "owner",
                                 "operations": [
+                                    "read",
                                     "create",
                                     "delete",
                                     "update"
@@ -392,5 +480,5 @@ export const schema = {
             }
         }
     },
-    "version": "2738728e6f069ea494ff1cd5d35ca02c"
+    "version": "e3e3933a94745a865e4be8f372e1f88f"
 };

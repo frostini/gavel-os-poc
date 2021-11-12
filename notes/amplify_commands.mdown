@@ -27,3 +27,15 @@ Try "amplify add api" to create a backend API and then "amplify publish" to depl
 "amplify mock api"
 
 
+------------------
+public access 
+
+
+https://docs.amplify.aws/lib/graphqlapi/authz/q/platform/js/
+
+https://github.com/aws-amplify/amplify-cli/issues/3802
+
+https://github.com/aws-amplify/amplify-cli/issues/4314
+
+https://github.com/aws-amplify/amplify-cli/issues/5732
+

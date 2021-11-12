@@ -88,23 +88,64 @@ function Example() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
   const [auctions, setAuctions] = useState([])
   const { user, router, isAuthenticated, loading } = useAuth();
+
+  // const oneTodo = await API.graphql({ query: queries.getTodo, variables: { id: 'some id' }});
+//   let filter = {
+//     or: [{ priority: {eq:1} },
+//          { priority: {eq:2} }]
+// };
+
+let filter = {
+  name: {
+    contains: "s"
+  },
+  status: {
+    eq: "live"
+  }
+}
+async function thisBitch(cb) {
+  const stuff = await API.graphql({
+    authMode: 'API_KEY',
+    query: listAuctions,
+    variables: {
+      filter: filter
+    }
+  })
+  .then(auctions => {
+    console.log('auctions: ', auctions)
+    cb(auctions.data.listAuctions.items)
+  })
+  .catch( err => {
+    console.log('errr: ', err)
+  })
+}
+
+
   useEffect(() => {
     if (!user && !loading){
       router.push('/sign-up')
     } 
   }, [])
   useEffect(() => {
-    async function loadData() {
-      await API.graphql({ query: listAuctions })
-                .then(auctions => {
-                  console.log('auctions: ', auctions)
-                  setAuctions(auctions.data.listAuctions.items)
-                })
-                .catch( err => {
-                  console.log('errr: ', err)
-                })
-    }
-    loadData()
+    // async function loadData() {
+
+      thisBitch(setAuctions)
+      // await API.graphql({ 
+      //   query: listAuctions,
+      //   variables: {
+      //     filter: filter
+      //   },
+      //   authMode: 'API_KEY'
+      //  })
+      //           .then(auctions => {
+      //             console.log('auctions: ', auctions)
+      //             setAuctions(auctions.data.listAuctions.items)
+      //           })
+      //           .catch( err => {
+      //             console.log('errr: ', err)
+      //           })
+    // }
+    // loadData()
   }, [])
   if (!user) return null
   return (

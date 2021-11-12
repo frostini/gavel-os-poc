@@ -3,14 +3,16 @@ type S3Object {
   region: String!
   key: String!
 }
-type Auction @model 
-  @key(name: "auctionsByMechanism", fields: ["mechanism"], queryField: "auctionsByMechanism")
-  @key(name: "auctionsByStatus", fields: ["status"], queryField: "auctionsByStatus")
-  @key(name: "auctionsByName", fields: ["name"], queryField: "auctionsByName")
-  @auth(rules: [
-    { allow: owner, operations: [create, delete, update] },
-  ])
-{
+
+type Auction 
+@model
+@key(name: "auctionsByMechanism", fields: ["mechanism"], queryField: "auctionsByMechanism")
+@key(name: "auctionsByStatus", fields: ["status"], queryField: "auctionsByStatus")
+@key(name: "auctionsByName", fields: ["name"], queryField: "auctionsByName") 
+@auth(rules: [
+  {allow: public, provider: apiKey, operations: [read]},
+  {allow: owner, provider: userPools, operations: [read, create, delete, update]},
+]) {
   id: ID!
   name: String
   status: AuctionStatusType
@@ -24,8 +26,13 @@ type Auction @model
   bids: [AuctionBid] @connection(keyName: "byAuctionBid", fields: ["id"])
 }
 
-type Auctionable @model
-  @key(name: "byAuctionable", fields: ["auctionID", "content"]) {
+type Auctionable 
+@model
+@key(name: "byAuctionable", fields: ["auctionID", "content"])
+@auth(rules: [
+  {allow: public, provider: apiKey, operations: [read]},
+  {allow: owner, provider: userPools, operations: [read, create, delete, update]},
+]) {
   id: ID!
   content: String
   description: String
@@ -33,18 +40,21 @@ type Auctionable @model
   quantity: Float
   unit: UnitType
   image: S3Object
-  auction: Auction @connection(fields: ["auctionID"])
+  auction: Auction @connection
 }
-type AuctionBid @model 
-  @auth(rules: [
-    { allow: owner, operations: [create, delete, update] },
-  ])
-  @key(name: "byAuctionBid", fields: ["auctionID", "value"]) {
+
+type AuctionBid 
+@model
+@key(name: "byAuctionBid", fields: ["auctionID", "value"])
+@auth(rules: [
+  {allow: public, provider: apiKey, operations: [read]},
+  {allow: owner, provider: userPools, operations: [read, create, delete, update]},
+]) {
   id: ID!
   auctionID: ID!
   value: Float
   unit: String
-  auction: Auction @connection(fields: ["auctionID"])
+  auction: Auction @connection
 }
 
 enum AuctionType {
@@ -52,12 +62,14 @@ enum AuctionType {
   english
   texas
 }
+
 enum AuctionStatusType {
   draft
   preview
   live
   complete
 }
+
 enum UnitType {
   item
   pallet

@@ -69,6 +69,7 @@ export declare class Auctionable {
   readonly quantity?: number;
   readonly unit?: UnitType | keyof typeof UnitType;
   readonly image?: S3Object;
+  readonly auction?: Auction;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<Auctionable, AuctionableMetaData>);
@@ -80,6 +81,7 @@ export declare class AuctionBid {
   readonly auctionID: string;
   readonly value?: number;
   readonly unit?: string;
+  readonly auction?: Auction;
   readonly createdAt?: string;
   readonly updatedAt?: string;
   constructor(init: ModelInit<AuctionBid, AuctionBidMetaData>);
